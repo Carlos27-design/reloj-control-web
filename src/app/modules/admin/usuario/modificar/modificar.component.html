@@ -1,0 +1,54 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="mt-2">
+            <div class="flex flex-wrap items-center font-medium">
+                <a class="whitespace-nowrap text-primary-500">Usuario</a>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                Modificar Usuario
+            </h2>
+        </div> 
+    </div>
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="flex-col p-3 sm:p-2">
+            <button mat-button color="warn" (click)="onDelete()">Eliminar Usuario
+                <mat-icon [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+            </button>
+        </div>
+        <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden" #form="ngForm" [formGroup]="formGroup" (ngSubmit)="onUpdate(); form.reset()">
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-6 group">
+                    <input type="text" formControlName="email"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                    <label for="" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email:</label>
+                    <mat-error *ngIf="formGroup.get('email').hasError('required')">El Correo Electronico es Requerido</mat-error>
+                    <mat-error *ngIf="formGroup.get('email').hasError('email')">Por favor ingrese Correo Electronico Valido</mat-error>
+                </div>
+                <div class="relative z-0 w-full mb-6 group">
+                    <input type="password" formControlName="contrasena"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                    <label for="" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contraseña:</label>
+                    <mat-error *ngIf="formGroup.get('contrasena').hasError('required')">La contraseña es Requerido</mat-error>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-6 group">
+                    <input type="password" formControlName="contrasena"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                    <label for="" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Repita Contraseña:</label>
+                    <mat-error *ngIf="formGroup.get('repitaContrasena').hasError('required')">Es requerido repetir Contraseña</mat-error>
+                </div>
+                <div class="relative z-0 w-full mb-6 group">
+                    <label for="" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Rol:</label>
+                    <select formControlName="rol" class="block py-2.5 px-0 w-full text-sm: text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                        <option selected>Seleccione un Rol</option>
+                        <option *ngFor="let rol of roles" [value]="rol.id">{{rol.rol}}</option>
+                    </select>
+                   
+                </div>
+            </div>
+
+            <div class="flex items-start justify-start">
+               <button mat-button (click)="toBack()">Volver</button>
+               <button mat-raised-button color="primary" [disabled]="formGroup.invalid">Modificar Usuario</button>
+            </div>
+        </form>
+    </div>
+</div>

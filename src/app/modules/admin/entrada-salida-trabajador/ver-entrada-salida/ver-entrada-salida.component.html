@@ -1,0 +1,52 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center font-medium">
+                <a class="whitespace-nowrap text-primary-500">Entrada y salidas Trabajadores</a>
+            </div>
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">Ver Horas Del Trabajador</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="flex-auto p-1 sm:p-1">
+            <button mat-button color="primary" (click)="exportarAExcel()">Exportar a Excel
+                <mat-icon svgIcon="heroicons_solid:document-download"></mat-icon>
+            </button>
+        </div>
+        <div class="table-responsive">
+        <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="Fecha">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Fecha
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Entrada">
+                    {{ row.fecha | date: " dd-MM-yyyy" }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Entrada">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Entrada
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Entrada">
+                    {{ row.entrada | date: " HH:mm:ss" }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Salida">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Salida
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Salida">
+                    {{row.salida | date: " HH:mm:ss"}}
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row (click)="toVer(row)" *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+    </div>
+        <mat-paginator [pageSizeOptions]="[10, 15, 20, 100]"></mat-paginator>
+        <button mat-button (click)="toBack()">Volver</button>
+    </div>
+</div>

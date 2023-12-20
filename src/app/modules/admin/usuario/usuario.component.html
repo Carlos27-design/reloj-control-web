@@ -1,0 +1,78 @@
+<div class="flex flex-col flex-auto min-w-0">
+    
+
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Title -->
+            <div class="mt-2">
+                <div class="flex flex-wrap items-center font-medium">
+                    <a class="whitespace-nowrap text-primary-500">Usuarios</a>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Lista Usuarios
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="flex items-start justify-start">
+            <button mat-button color="primary" (click)="toNuevo()">Nuevo Usuario
+                <mat-icon [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+            </button>
+        </div>
+        <div class="table-responsive">
+            <mat-table [dataSource]="dataSource" matSort > 
+                <ng-container matColumnDef="Email" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header >
+                        Email
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Email">
+                        {{ row.email }}
+                    </mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="Rol">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header >
+                        Rol
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Rol" >
+                        {{ row.Roles.rol }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Trabajador">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header >
+                        Trabajador
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Rol" >
+                        {{ row.Trabajadores.nombre }} {{row.Trabajadores.apellido}}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Creado">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header >
+                        Creado
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row" data-label="Creado" >
+                        {{ row.created_at | date: "dd - MM - yyyy"}}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Actualizado">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header >
+                        Actualizado
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.rut" data-label="Actualizado" >
+                        {{ row.updated_at | date: "dd - MM - yyyy"}}
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row (click)="toModificar(row)" *matRowDef="let row; columns: displayedColumns">
+                </mat-row>
+            </mat-table>
+        </div>
+            <mat-paginator [pageSizeOptions]="[10, 15, 25, 100]"></mat-paginator>
+        
+    </div>  
+</div>
+
+
+    

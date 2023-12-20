@@ -1,0 +1,46 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Entrada y Salida
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row principal">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="nombre">Bienvenido {{trabajador}}</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="hora">{{hora}}:{{minuto}}:{{segundo}}</p>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="fecha">{{dia}}-{{mes}}-{{anio}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="button-center" >
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-extrabold rounded-full text-sm px-22 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="registrarEntrada()" [disabled]="desactivarGuardarEntrada">Entrada</button>
+        </div>
+        <div class="button-center">
+            <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-extrabold rounded-full text-sm px-22 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" (click)="registrarSalida()"[disabled]="desactivarGuardarSalida">Salida</button>
+        </div>
+        <div class="button-center">
+            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-extrabold rounded-full text-sm px-22 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"(click)="toVerEntrada()">Ver Entrada y Salidas</button>
+        </div>
+    </div>
+</div>
